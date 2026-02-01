@@ -57,6 +57,7 @@ export const subcategories: Subcategory[] = [
 ];
 
 export const newProducts: Item[] = [
+  { id: "p-1769940476881", name: { en: "Safety Orange Mesh ", ar: "شبك السلامة برتقالي" }, categoryId: "category-1769276168804", priceRange: { min: 14, max: 18 }, Brand: "Hi TECH" },
   { id: "p-1769275165538", name: { en: "ABC", ar: "ABC - Arabic" }, categoryId: "category-1769276168804", subcategoryId: "subcategory-1766842274536", priceRange: { min: 300, max: 600 }, Brand: "Niki" },
   { id: "p-1766848283790", name: { en: "New Product", ar: "منتج جديد" }, categoryId: "category-1766747244591", subcategoryId: "subcategory-1766842274536", priceRange: { min: 50, max: 100 }, Brand: "Sultan" },
   { id: "np-1", name: { en: "AC578 Sanitary Bath & Kitchen Acrylic Sealant", ar: "AC578 مانع تسرب أكريليك للمطبخ والحمام" }, categoryId: "adhesives", subcategoryId: "hybrid", priceRange: { min: 10, max: 50 }, Brand: "Akfix" },

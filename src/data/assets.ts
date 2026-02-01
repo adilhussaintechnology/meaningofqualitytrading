@@ -31,9 +31,7 @@ export const categoryIconById: Record<string, string> = {
 };
 
 // Visual theme (Tailwind classes) for each category
-export const categoryThemeById: Record<string, { bg: string; ring: string; text: string; hoverBg: string; hoverRing: string; hoverText: string }> = {
-
-};
+export const categoryThemeById: Record<string, { bg: string; ring: string; text: string; hoverBg: string; hoverRing: string; hoverText: string }> = {};
 
 // Map item IDs from data/catalog to product images
 export const productImageByItemId: Record<string, string> = {
@@ -60,5 +58,6 @@ export const productImageByItemId: Record<string, string> = {
   "p-1766663816115": "/images/all-products/fire-rated/p-1766663816115_1766743011221_jq9pyz.jpeg",
   "p-1766747336873": "/images/all-products/category-1766747244591/p-1766747336873_1766750555797_d1fezx.png",
   "p-1766848283790": "/images/all-products/category-1766747244591/p-1766848283790_1766848846727_z2sy66.png",
-  "p-1769275165538": "/images/all-products/category-1766747244591/subcategory-1766842274536/p-1769275165538_1769275886294_twuuo3.png"
+  "p-1769275165538": "/images/all-products/category-1766747244591/subcategory-1766842274536/p-1769275165538_1769275886294_twuuo3.png",
+  "p-1769940476881": ""
 };
