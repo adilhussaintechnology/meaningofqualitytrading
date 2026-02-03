@@ -16,9 +16,12 @@ export default function ImageGallery({
 }: ImageGalleryProps) {
   const lang = useLang();
   const gallery = images && images.length ? images : ['/images/file.svg'];
+
   const [active, setActive] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [transformOrigin, setTransformOrigin] = useState('50% 50%');
 
+  // Auto slide (paused on hover)
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isHovered) {
@@ -33,28 +36,43 @@ export default function ImageGallery({
     <div
       className="flex h-full flex-col"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setTransformOrigin('50% 50%');
+      }}
     >
-      {/* Main image container */}
-      <div className="relative flex-1 rounded-xl bg-background overflow-hidden h-80 lg:h-[400px]">
+      {/* MAIN IMAGE WITH FULL ZOOM */}
+      <div
+        className="relative flex-1 rounded-xl bg-background overflow-hidden h-80 lg:h-[400px]"
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          setTransformOrigin(`${x}% ${y}%`);
+        }}
+      >
         <Image
           src={gallery[active]}
           alt="Product image"
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-contain"
+          className="object-contain transition-transform duration-200 ease-out cursor-zoom-in"
+          style={{
+            transformOrigin,
+            transform: isHovered ? 'scale(2.5)' : 'scale(1)',
+          }}
         />
 
         {/* NEW badge */}
         {isNew && (
           <span className="absolute left-3 top-3 rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white">
-            {t("newProductBadge", lang)}
+            {t('newProductBadge', lang)}
           </span>
         )}
       </div>
 
-      {/* Thumbnails */}
+      {/* THUMBNAILS */}
       {gallery.length > 1 && (
         <div className="mt-4 flex gap-2 overflow-x-auto">
           {gallery.map((src, i) => (
@@ -62,9 +80,10 @@ export default function ImageGallery({
               key={src + i}
               onClick={() => setActive(i)}
               className={`relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border transition
-                ${active === i
-                  ? 'border-primary ring-2 ring-primary'
-                  : 'border-foreground/10 hover:border-foreground/30'
+                ${
+                  active === i
+                    ? 'border-primary ring-2 ring-primary'
+                    : 'border-foreground/10 hover:border-foreground/30'
                 }`}
               type="button"
             >
